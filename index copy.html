@@ -1,0 +1,194 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Media Recommendations with ChatGPT</title>
+
+<style>
+    /* General Reset and Basic Styles */
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+body {
+  font-family: 'Arial', sans-serif;
+  background-color: #f4f4f4;
+  color: #333;
+  line-height: 1.6;
+  padding: 20px;
+}
+
+/* Container */
+div {
+  width: 80%;
+  margin: auto;
+  overflow: hidden;
+}
+
+/* Header */
+h1 {
+  text-align: center;
+  margin-bottom: 20px;
+  color: #333;
+}
+
+/* Form Styles */
+label {
+  display: block;
+  margin: 10px 0;
+}
+
+input[type="text"], select {
+  width: 100%;
+  padding: 10px;
+  margin-bottom: 20px;
+  border-radius: 5px;
+  border: 1px solid #ddd;
+}
+
+button {
+  display: block;
+  width: 100%;
+  padding: 10px;
+  background-color: #0056b3;
+  color: white;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+}
+
+button:hover {
+  background-color: #003d82;
+}
+
+/* Loading GIF */
+#loading-gif {
+  width: 50px;
+  height: 50px;
+  margin: 20px auto;
+}
+
+/* Recommendation Items */
+.recommendation-item {
+  background-color: #e7e7e7;
+  padding: 15px;
+  margin-bottom: 10px;
+  border-radius: 5px;
+  animation: fadeIn 0.5s;
+}
+
+/* Animations */
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+    transform: translateY(-20px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+/* Responsive Design */
+@media screen and (max-width: 768px) {
+  div {
+    width: 95%;
+  }
+}
+
+</style>
+</head>
+<body>
+  <div>
+    <h1>Media Recommendations</h1>
+    <label for="recommendation-type">Choose a Category:</label>
+    <select id="recommendation-type">
+      <option value="game">Game</option>
+      <option value="movie">Movie</option>
+      <option value="song">Song</option>
+    </select>
+    <br>
+    <label for="user-input">Enter Name:</label>
+    <input type="text" id="user-input" placeholder="E.g., Dark Souls, Titanic, Bohemian Rhapsody">
+    <button onclick="getRecommendations()">Get Recommendations</button>
+    <div id="json-response">
+        <img id="loading-gif" src="Spinner-6.3s-200px.gif" style="display: none;" />
+        <div id="response-text"></div> <!-- New container for the response text -->
+      </div>
+      
+      
+  </div>
+
+  <script>
+    async function getRecommendations() {
+      const category = document.getElementById('recommendation-type').value;
+      const userInputName = document.getElementById('user-input').value;
+      const button = document.querySelector('button');
+      const responseTextElement = document.getElementById('response-text');
+          console.log(responseTextElement)
+
+      const loadingGif = document.getElementById('loading-gif');
+
+      button.disabled = true;
+      responseTextElement.innerHTML = '';
+      loadingGif.style.display = 'block';
+
+      try {
+        const response = await fetch('https://api.openai.com/v1/chat/completions', {
+          method: 'POST',
+          headers: {
+            'Content-Type': 'application/json',
+            'Authorization': 'Bearer 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' // Replace with your actual API key
+          },
+          body: JSON.stringify({
+            model: 'gpt-3.5-turbo',
+            messages: [
+              { role: 'system', content: 'You are a helpful assistant and writing in html format.' },
+              { role: 'user', content: `List five ${category}s similar to "${userInputName}" with their ratings in applicable platforms, release platforms, release dates, and reasons for recommendation. and add [end] by the end of each recommendation (write the name of the recommendation as title and others like rating as a point in new line)` },
+            ],
+          }),
+        });
+
+        if (!response.ok) {
+          throw new Error(`HTTP error! Status: ${response.status}`);
+        }
+
+        const data = await response.json();
+        const recommendations = data.choices[0].message.content;
+        const recommendationArray = parseRecommendations(recommendations);
+        displayRecommendations(recommendationArray);
+
+      } catch (error) {
+        console.error('Fetch Error:', error.message);
+        responseTextElement.textContent = 'Error: ' + error.message;
+        if (error.message.includes('429')) {
+          alert("You've reached the rate limit. Please try again later.");
+        }
+      } finally {
+        loadingGif.style.display = 'none';
+        button.disabled = false;
+      }
+    }
+
+    function parseRecommendations(responseTextElement) {
+      const lines = responseTextElement.split('[end]');
+      return lines.map(line => {
+        return { content: line.trim() };
+      });
+    }
+
+    function displayRecommendations(recommendationArray) {
+      const responseTextElement = document.getElementById('response-text');
+      responseTextElement.innerHTML = recommendationArray.map((recommendation, index) => {
+        return `<div class="recommendation-item">${index + 1}. ${recommendation.content}</div>`;
+      }).join('');
+    }
+  </script>
+  
+  
+</body>
+</html>

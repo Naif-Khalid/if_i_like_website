@@ -1,0 +1,272 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="utf-8">
+  <meta content="width=device-width, initial-scale=1.0" name="viewport">
+  <title>If I like</title>
+  <meta content="" name="description">
+  <meta content="" name="keywords">
+
+  <!-- Favicons -->
+  <link href="assets/img/love-always-wins.png" rel="icon">
+  <link href="assets/img/love-always-wins.png" rel="apple-touch-icon">
+
+  <!-- Google Fonts -->
+  <link href="https://fonts.googleapis.com/css?family=Open+Sans:300,300i,400,400i,600,600i,700,700i|Raleway:300,300i,400,400i,600,600i,700,700i" rel="stylesheet">
+
+  <!-- Vendor CSS Files -->
+  <link href="assets/vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet">
+  <link href="assets/vendor/bootstrap-icons/bootstrap-icons.css" rel="stylesheet">
+
+  <!-- Template Main CSS File -->
+  <link href="assets/css/style.css" rel="stylesheet">
+
+  <!-- =======================================================
+  * Template Name: Maundy
+  * Updated: Jan 09 2024 with Bootstrap v5.3.2
+  * Template URL: https://bootstrapmade.com/maundy-free-coming-soon-bootstrap-theme/
+  * Author: BootstrapMade.com
+  * License: https://bootstrapmade.com/license/
+  ======================================================== -->
+</head>
+
+<body>
+
+  <!-- ======= Header ======= -->
+  <header id="header" class="d-flex align-items-center">
+    <nav class="navbar bg-body-tertiary">
+      <div class="container">
+        <a class="navbar-brand" href="#">
+          <img src="assets/img/heart.jpg" alt="Bootstrap" style="max-width: max-content;" height="50">
+        </a>
+      </div>
+    </nav>
+    <!-- <div class="container d-flex flex-column align-items-center" style="color: azure;"></div> -->
+  </header><!-- End #header -->
+
+  <main id="main">
+
+    <!-- ======= About Us Section ======= -->
+    <section id="about" class="about">
+      <div class="container d-flex flex-column align-items-center" style="color: azure;">
+        
+        <h4>Welocme to</h4>
+        <h1>If I Like...</h1>
+        <h2>Your Personalized Recommendation Hub!</h2>
+        <h3>For Your Intesets of...</h3>
+        </div>
+        <div class="container xd-flex xflex-row align-items-center">
+          <!-- <div class="row align-items-center"> -->
+            <style> 
+              .recommended-movies { 
+                display: flex; 
+                flex-wrap: nowrap; 
+                overflow-x: auto; 
+              } 
+             
+              .movie-box { 
+                flex: 0 0 auto; 
+                margin-right: 20px; 
+                padding: 10px; 
+                border: 1px solid #ccc; 
+                border-radius: 5px; 
+              } 
+             
+              .movie-item { 
+                display: flex; 
+                flex-direction: column; 
+                align-items: center; 
+              } 
+             
+              .movie-image img { 
+                width: 200px; 
+                height: auto; 
+              } 
+            </style> 
+
+             <div class="container text-center">
+
+            <div class="recommended-movies" style="text-align: center;"> 
+              <div class="movie-box" style="background-color: #ffffff;"> 
+                <div class="movie-item"> 
+                  <div class="movie-image"> 
+                    <img src="assets/img/movie.jpeg" alt="Photo"> 
+                  </div> 
+                  <div class="movie-details"> 
+                    <h4 class="movie-title" style="color: rgb(45, 45, 45);">Movies</h4> 
+                  </div> 
+                </div> 
+              </div> 
+             
+              <div class="movie-box" style="background-color: #ffffff;"> 
+                <div class="movie-item"> 
+                  <div class="movie-image"> 
+                    <img src="assets/img/book.jpeg" alt="Photo"> 
+                  </div> 
+                  <div class="movie-details"> 
+                    <h4 class="movie-title" style="color: rgb(45, 45, 45);">Books</h4> 
+                  </div> 
+                </div> 
+              </div> 
+             
+              <div class="movie-box" style="background-color: #ffffff;"> 
+                <div class="movie-item"> 
+                  <div class="movie-image"> 
+                    <img src="assets/img/game.jpeg" alt="Photo"> 
+                  </div> 
+                  <div class="movie-details"> 
+                    <h4 class="movie-title" style="color: rgb(45, 45, 45);">Games</h4>  
+                  </div> 
+                </div> 
+              </div> 
+             
+              <div class="movie-box" style="background-color: #ffffff;"> 
+                <div class="movie-item"> 
+                  <div class="movie-image"> 
+                    <img src="assets/img/music.jpeg" alt="Photo"> 
+                  </div> 
+                  <div class="movie-details"> 
+                    <h4 class="movie-title" style="color: rgb(45, 45, 45);">Music</h4> 
+                  </div> 
+                </div> 
+              </div> 
+            </div>
+            
+              </div>
+            <div class="form-group mt-3"> 
+              
+              
+              <body>
+                <div>
+                  <h1>Media Recommendations</h1>
+                  <label for="recommendation-type">Choose a Category:</label>
+                  <select id="recommendation-type">
+                    <option value="game">Game</option>
+                    <option value="movie">Movie</option>
+                    <option value="song">Song</option>
+                  </select>
+                  <br>
+                  <label for="user-input">Enter Name:</label>
+                  <input type="text" id="user-input" placeholder="E.g., Dark Souls, Titanic, Bohemian Rhapsody">
+                  <button onclick="getRecommendations()">Get Recommendations</button>
+                  <div id="json-response">
+                      <img id="loading-gif" src="Spinner-6.3s-200px.gif" style="display: none;" />
+                      <div id="response-text"></div> <!-- New container for the response text -->
+                    </div>
+                    
+                    
+                </div>
+              
+                <script>
+                  async function getRecommendations() {
+                    const category = document.getElementById('recommendation-type').value;
+                    const userInputName = document.getElementById('user-input').value;
+                    const button = document.querySelector('button');
+                    const responseTextElement = document.getElementById('response-text');
+                        console.log(responseTextElement)
+              
+                    const loadingGif = document.getElementById('loading-gif');
+              
+                    button.disabled = true;
+                    responseTextElement.innerHTML = '';
+                    loadingGif.style.display = 'block';
+              
+                    try {
+                      const response = await fetch('https://api.openai.com/v1/chat/completions', {
+                        method: 'POST',
+                        headers: {
+                          'Content-Type': 'application/json',
+                          'Authorization': 'Bearer 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' // Replace with your actual API key
+                        },
+                        body: JSON.stringify({
+                          model: 'gpt-3.5-turbo',
+                          messages: [
+                            { role: 'system', content: 'You are a helpful assistant and writing in html format.' },
+                            { role: 'user', content: `List five ${category}s similar to "${userInputName}" with their ratings in applicable platforms, release platforms, release dates, and reasons for recommendation. and add [end] by the end of each recommendation (write the name of the recommendation as title and others like rating as a point in new line, add a border around every recommendation border: 2px solid white )` },
+                          ],
+                        }),
+                      });
+              
+                      if (!response.ok) {
+                        throw new Error(`HTTP error! Status: ${response.status}`);
+                      }
+              
+                      const data = await response.json();
+                      const recommendations = data.choices[0].message.content;
+                      const recommendationArray = parseRecommendations(recommendations);
+                      displayRecommendations(recommendationArray);
+              
+                    } catch (error) {
+                      console.error('Fetch Error:', error.message);
+                      responseTextElement.textContent = 'Error: ' + error.message;
+                      if (error.message.includes('429')) {
+                        alert("You've reached the rate limit. Please try again later.");
+                      }
+                    } finally {
+                      loadingGif.style.display = 'none';
+                      button.disabled = false;
+                    }
+                  }
+              
+                  function parseRecommendations(responseTextElement) {
+                    const lines = responseTextElement.split('[end]');
+                    return lines.map(line => {
+                      return { content: line.trim() };
+                    });
+                  }
+              
+                  function displayRecommendations(recommendationArray) {
+                    const responseTextElement = document.getElementById('response-text');
+                    responseTextElement.innerHTML = recommendationArray.map((recommendation, index) => {
+                      return `<div class="recommendation-item">${index + 1}. ${recommendation.content}</div>`;
+                    }).join('');
+                  }
+                </script>
+                
+                
+              </body>
+            </div> 
+            <div class="my-3"> 
+
+            </div> 
+            
+          </form> 
+        </div> 
+
+      </div> 
+
+    </div> 
+  </section><!-- End Contact Us Section --> 
+
+</main><!-- End #main --> 
+
+<!-- ======= Footer ======= --> 
+<footer id="footer"> 
+  <div class="container"> 
+    <div class="copyright"> 
+      &copy; Copyright <strong><span>Maundy</span></strong>. All Rights Reserved 
+    </div> 
+    <div class="credits"> 
+      <!-- All the links in the footer should remain intact. --> 
+      <!-- You can delete the links only if you purchased the pro version. --> 
+      <!-- Licensing information: https://bootstrapmade.com/license/ --> 
+      <!-- Purchase the pro version with working PHP/AJAX contact form: https://bootstrapmade.com/maundy-free-coming-soon-bootstrap-theme/ --> 
+      Designed by <a href="https://bootstrapmade.com/">BootstrapMade</a> 
+    </div> 
+  </div> 
+</footer><!-- End #footer --> 
+
+<a href="#" class="back-to-top d-flex align-items-center justify-content-center"><i class="bi bi-arrow-up-short"></i></a> 
+
+<!-- Vendor JS Files --> 
+<script src="assets/vendor/bootstrap/js/bootstrap.bundle.min.js"></script> 
+<script src="assets/vendor/php-email-form/validate.js"></script> 
+
+<!-- Template Main JS File --> 
+<script src="assets/js/main.js"></script> 
+
+</body> 
+
+</html>
+
