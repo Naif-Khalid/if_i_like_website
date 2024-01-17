@@ -85,55 +85,69 @@
               } 
             </style> 
 
-             <div class="container text-center">
-
-            <div class="recommended-movies" style="text-align: center;"> 
-              <div class="movie-box" style="background-color: #ffffff;"> 
-                <div class="movie-item"> 
-                  <div class="movie-image"> 
-                    <img src="assets/img/movie.jpeg" alt="Photo"> 
-                  </div> 
-                  <div class="movie-details"> 
-                    <h4 class="movie-title" style="color: rgb(45, 45, 45);">Movies</h4> 
-                  </div> 
-                </div> 
-              </div> 
-             
-              <div class="movie-box" style="background-color: #ffffff;"> 
-                <div class="movie-item"> 
-                  <div class="movie-image"> 
-                    <img src="assets/img/book.jpeg" alt="Photo"> 
-                  </div> 
-                  <div class="movie-details"> 
-                    <h4 class="movie-title" style="color: rgb(45, 45, 45);">Books</h4> 
-                  </div> 
-                </div> 
-              </div> 
-             
-              <div class="movie-box" style="background-color: #ffffff;"> 
-                <div class="movie-item"> 
-                  <div class="movie-image"> 
-                    <img src="assets/img/game.jpeg" alt="Photo"> 
-                  </div> 
-                  <div class="movie-details"> 
-                    <h4 class="movie-title" style="color: rgb(45, 45, 45);">Games</h4>  
-                  </div> 
-                </div> 
-              </div> 
-             
-              <div class="movie-box" style="background-color: #ffffff;"> 
-                <div class="movie-item"> 
-                  <div class="movie-image"> 
-                    <img src="assets/img/music.jpeg" alt="Photo"> 
-                  </div> 
-                  <div class="movie-details"> 
-                    <h4 class="movie-title" style="color: rgb(45, 45, 45);">Music</h4> 
-                  </div> 
-                </div> 
-              </div> 
-            </div>
-            
-              </div>
+<div class="container"> 
+  <div class="row justify-content-center"> 
+    <div class="col-md-3"> 
+      <div class="recommended-movies text-center"> 
+        <div class="movie-box" style="background-color: #ffffff;"> 
+          <div class="movie-item"> 
+            <div class="movie-image"> 
+              <img src="assets/img/movie.jpeg" alt="Photo"> 
+            </div> 
+            <div class="movie-details"> 
+              <h4 class="movie-title" style="color: rgb(45, 45, 45);">Movies</h4> 
+            </div> 
+          </div> 
+        </div> 
+      </div> 
+    </div> 
+ 
+    <div class="col-md-3"> 
+      <div class="recommended-movies text-center"> 
+        <div class="movie-box" style="background-color: #ffffff;"> 
+          <div class="movie-item"> 
+            <div class="movie-image"> 
+              <img src="assets/img/book.jpeg" alt="Photo"> 
+            </div> 
+            <div class="movie-details"> 
+              <h4 class="movie-title" style="color: rgb(45, 45, 45);">Books</h4> 
+            </div> 
+          </div> 
+        </div> 
+      </div> 
+    </div> 
+ 
+    <div class="col-md-3"> 
+      <div class="recommended-movies text-center"> 
+        <div class="movie-box" style="background-color: #ffffff;"> 
+          <div class="movie-item"> 
+            <div class="movie-image"> 
+              <img src="assets/img/game.jpeg" alt="Photo"> 
+            </div> 
+            <div class="movie-details"> 
+              <h4 class="movie-title" style="color: rgb(45, 45, 45);">Games</h4> 
+            </div> 
+          </div> 
+        </div> 
+      </div> 
+    </div> 
+ 
+    <div class="col-md-3"> 
+      <div class="recommended-movies text-center"> 
+        <div class="movie-box" style="background-color: #ffffff;"> 
+          <div class="movie-item"> 
+            <div class="movie-image"> 
+              <img src="assets/img/music.jpeg" alt="Photo"> 
+            </div> 
+            <div class="movie-details"> 
+              <h4 class="movie-title" style="color: rgb(45, 45, 45);">Music</h4> 
+            </div> 
+          </div> 
+        </div> 
+      </div> 
+    </div> 
+  </div> 
+</div>
             <div class="form-group mt-3"> 
               
               
@@ -177,7 +191,7 @@
                         method: 'POST',
                         headers: {
                           'Content-Type': 'application/json',
-                          'Authorization': 'Bearer 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' // Replace with your actual API key
+                          'Authorization': 'Bearer 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' // Replace with your actual API key
                         },
                         body: JSON.stringify({
                           model: 'gpt-3.5-turbo',
